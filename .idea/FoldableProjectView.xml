@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FoldableProjectSettings">
+    <option name="HIDE_IGNORED_FILES" value="false" />
+    <option name="HIDE_EMPTY_GROUPS" value="true" />
+    <option name="RULES">
+      <list>
+        <Rule>
+          <option name="name" value="Ignored Files" />
+          <option name="pattern" value="" />
+        </Rule>
+      </list>
+    </option>
+  </component>
+</project>
