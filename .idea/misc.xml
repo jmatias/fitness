@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Black">
     <option name="sdkName" value="Python 3.11" />
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_20" project-jdk-name="Poetry (Fitness)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_20" project-jdk-name="~/Library/Mobile Documents/com~apple~CloudDocs/work-personal/Tableau/javier.fitness/.venv" project-jdk-type="Python SDK" />
 </project>
