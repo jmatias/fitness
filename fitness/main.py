@@ -28,28 +28,32 @@ def interpolate_missing_weights(df: pd.DataFrame) -> pd.DataFrame:
     return df.interpolate(method="linear", limit_direction="forward", axis=0)
 
 
-# %%
+def main() -> None:
+    # %%
 
-df_fitbit = read_csv("data_files/fitness_agg.csv").pipe(cast_date_columns, column_name="Date")
-df_fitbit = df_fitbit[["Date", "Weight"]]
+    df_fitbit = read_csv("data_files/fitness_agg.csv").pipe(cast_date_columns, column_name="Date")
+    df_fitbit = df_fitbit[["Date", "Weight"]]
 
-df_withings = read_csv("data_files/weight.csv").pipe(cast_date_columns, column_name="Date")
-df_withings = df_withings[["Date", "Weight (kg)"]]
-df_withings.rename(columns={"Weight (kg)": "Weight"}, inplace=True)
+    df_withings = read_csv("data_files/weight.csv").pipe(cast_date_columns, column_name="Date")
+    df_withings = df_withings[["Date", "Weight (kg)"]]
+    df_withings.rename(columns={"Weight (kg)": "Weight"}, inplace=True)
 
-df = pd.concat([df_fitbit, df_withings], ignore_index=True)
-del (df_fitbit, df_withings)
+    df = pd.concat([df_fitbit, df_withings], ignore_index=True)
+    del (df_fitbit, df_withings)
 
-# %%
+    # %%
 
-df = (
-    df.sort_values("Date")
-    .pipe(calculate_mean_weight_per_day)
-    .pipe(insert_missing_days)
-    .pipe(interpolate_missing_weights)
-    .pipe(cast_date_columns, column_name="Date")
-    .sort_values("Date", ascending=False)
-)
+    df = (
+        df.sort_values("Date")
+        .pipe(calculate_mean_weight_per_day)
+        .pipe(insert_missing_days)
+        .pipe(interpolate_missing_weights)
+        .pipe(cast_date_columns, column_name="Date")
+        .sort_values("Date", ascending=False)
+    )
+
+    df.to_csv("data_files/weight_interpolated.csv", index=False)
 
 
-df.to_csv("data_files/weight_interpolated.csv", index=False)
+if __name__ == "__main__":
+    main()
